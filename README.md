@@ -11,6 +11,10 @@ USTH ICT 2021 Distributed Systems
 Group Info
 =======================
 
-* Name 1 (ID1)
-* Name 2 (ID2)
+* Nguyễn Quốc Thông Bi9-214
+* Nguyễn Văn Tùng Bi9-229
+* Trần Minh Vương Bi9-239
+* Phí Đỗ Hải Long Bi9-149
+* Lê Huy Quang Bi9-229
+
 
