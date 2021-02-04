@@ -15,6 +15,6 @@ Group Info
 * Nguyễn Văn Tùng Bi9-229
 * Trần Minh Vương Bi9-239
 * Phí Đỗ Hải Long Bi9-149
-* Lê Huy Quang Bi9-229
+* Lê Huy Quang Bi9-
 
 
