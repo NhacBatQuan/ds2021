@@ -1,4 +1,4 @@
-package RMI_FileTransfer;
+    package RMI_FileTransfer;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
