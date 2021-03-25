@@ -45,8 +45,6 @@ public class NamingServer{
 
     public static void main(String[] args) throws AlreadyBoundException, RemoteException, MalformedURLException, NotBoundException {
         Initialize();
-        createServer("ServerA","F:\\RMI_DFS\\Storage1");
-        createServer("ServerB","F:\\RMI_DFS\\Storage2");
         FileService fileService = (FileService) Naming.lookup("rmi://localhost:6789/main");
         boolean running = true;
         while(running){
