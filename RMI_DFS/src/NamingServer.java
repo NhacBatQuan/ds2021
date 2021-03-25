@@ -8,10 +8,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class NamingServer{
     private static Registry registry;
@@ -40,7 +37,10 @@ public class NamingServer{
         registerService.bind(name,server);
         Naming.rebind("rmi://localhost:6789/main",fileService);
     }
-
+    public static void disableServer(String name){
+        fileService = (FileService) Naming.lookup("rmi://localhost:6789/main");
+        for()
+    }
 
 
     public static void main(String[] args) throws AlreadyBoundException, RemoteException, MalformedURLException, NotBoundException {
@@ -52,6 +52,7 @@ public class NamingServer{
             System.out.println("Press 0 to exit");
             System.out.println("Press 1 to create a new server");
             System.out.println("Press 2 to see all available server");
+            System.out.println("Press 3 to disable a server");
             int input = sc.nextInt();
             if(input == 0){
                 running = false;
@@ -66,6 +67,7 @@ public class NamingServer{
                 }
                 JFileChooser f = new JFileChooser();
                 f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                f.setCurrentDirectory(new File(System.getProperty("user.dir")));
                 f.showSaveDialog(null);
                 String location = f.getSelectedFile().getAbsolutePath();
                 createServer(Servername,location);
@@ -75,6 +77,12 @@ public class NamingServer{
                 for(String server: fileService.getServerLocation()){
                     System.out.println("Server number "+ (fileService.getServerLocation().indexOf(server) + 1) +": " +server);
                 }
+            }
+            else if(input == 4){
+                System.out.println("Please choose the server you want to disable");
+                Scanner sc2 = new Scanner(System.in);
+                String Servername = sc2.nextLine();
+
             }
             else{
                 System.out.println("Please insert again");

@@ -85,6 +85,7 @@ public class Client {
         byte[] contents = null;
         JFileChooser f = new JFileChooser();
         f.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        f.setCurrentDirectory(new File(System.getProperty("user.dir")));
         f.showSaveDialog(null);
         String location = f.getSelectedFile().getAbsolutePath();
         File file = new File(location);
@@ -96,6 +97,7 @@ public class Client {
     public static void fileDownloaded(String filename,byte[] contents) throws IOException {
         JFileChooser f = new JFileChooser();
         f.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        f.setCurrentDirectory(new File(System.getProperty("user.dir")));
         f.showSaveDialog(null);
         String location = f.getSelectedFile().getAbsolutePath();
         File file = new File(location+"/"+filename);
