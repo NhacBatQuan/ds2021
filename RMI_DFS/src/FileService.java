@@ -33,4 +33,5 @@ public interface FileService extends Remote {
 
     String getLocationOfFile(String filename) throws RemoteException;
 
+    public void removeStorageLocation(String serverName) throws RemoteException;
 }

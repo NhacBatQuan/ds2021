@@ -22,6 +22,11 @@ public class StorageServer extends UnicastRemoteObject implements StorageService
         return ServerName;
     }
 
+    @Override
+    public void addFile(String filename) throws RemoteException {
+        Filelist.add(filename);
+    }
+
     public List<String> getFilelist() throws RemoteException {
         return Filelist;
     }
@@ -52,6 +57,7 @@ public class StorageServer extends UnicastRemoteObject implements StorageService
         File file = new File(getStorageLocation()+"/"+filename);
         BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(file));
         os.write(contents);
+        os.flush();
     }
 
 

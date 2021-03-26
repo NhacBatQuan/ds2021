@@ -7,6 +7,6 @@ import java.rmi.RemoteException;
 public interface RegisterService{
     void bind(String name, StorageService service) throws AlreadyBoundException, MalformedURLException, RemoteException;
 
-    void unbind(String name, StorageService service) throws NotBoundException, MalformedURLException, RemoteException;
+    void unbind(String name) throws NotBoundException, MalformedURLException, RemoteException;
 
 }

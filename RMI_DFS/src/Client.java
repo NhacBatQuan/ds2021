@@ -45,6 +45,8 @@ public class Client {
                 String server2name = fileService.getServerLocation().get(rand2);
                 StorageService server1 = (StorageService) Naming.lookup("rmi://localhost:6789/"+server1name);
                 StorageService server2 = (StorageService) Naming.lookup("rmi://localhost:6789/"+server2name);
+                server1.addFile(name);
+                server2.addFile(name);
                 byte[] contents = fileUploaded();
                 server1.write(name,contents);
                 server2.write(name,contents);
@@ -103,5 +105,6 @@ public class Client {
         File file = new File(location+"/"+filename);
         BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(file));
         os.write(contents);
+        os.flush();
     }
 }

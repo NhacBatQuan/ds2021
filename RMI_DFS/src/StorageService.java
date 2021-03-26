@@ -12,4 +12,6 @@ public interface StorageService extends Remote {
     List<String> getFilelist() throws RemoteException;
 
     String getServerName() throws RemoteException;
+
+    void addFile(String filename) throws RemoteException;
 }

@@ -56,6 +56,10 @@ public class FileServiceImpl extends UnicastRemoteObject implements FileService{
     public void addStorageLocation(String serverName) throws RemoteException{
         this.ServerLocation.add(serverName);
     }
+    @Override
+    public void removeStorageLocation(String serverName) throws RemoteException{
+        this.ServerLocation.remove(serverName);
+    }
 
     @Override
     public StorageService fileAt(String filename) throws RemoteException, MalformedURLException, NotBoundException {

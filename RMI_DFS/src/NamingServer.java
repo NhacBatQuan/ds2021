@@ -37,9 +37,31 @@ public class NamingServer{
         registerService.bind(name,server);
         Naming.rebind("rmi://localhost:6789/main",fileService);
     }
-    public static void disableServer(String name){
+    public static void disableServer(String name) throws RemoteException, NotBoundException, MalformedURLException {
         fileService = (FileService) Naming.lookup("rmi://localhost:6789/main");
-        for()
+        fileService.removeStorageLocation(name);
+        ArrayList<String> FileList = new ArrayList<>();
+        HashMap<String,List<String>> LocationMap = new HashMap<>();
+        for(String storage: fileService.getServerLocation()){
+            StorageService temp = (StorageService) Naming.lookup("rmi://localhost:6789/"+storage);
+            for(String file: temp.getFilelist()){
+                if(!FileList.contains(file)){
+                    FileList.add(file);
+                    ArrayList<String> ListKey = new ArrayList<>();
+                    ListKey.add(storage);
+                    LocationMap.put(file,ListKey);
+                }
+                else{
+                    ArrayList<String> tempMap = (ArrayList<String>) LocationMap.get(file);
+                    tempMap.add(storage);
+                    LocationMap.put(file,tempMap);
+                }
+            }
+        }
+        fileService.setAvailableFile(FileList);
+        fileService.setFileLocation(LocationMap);
+        registerService.unbind(name);
+        Naming.rebind("rmi://localhost:6789/main",fileService);
     }
 
 
@@ -78,11 +100,11 @@ public class NamingServer{
                     System.out.println("Server number "+ (fileService.getServerLocation().indexOf(server) + 1) +": " +server);
                 }
             }
-            else if(input == 4){
+            else if(input == 3){
                 System.out.println("Please choose the server you want to disable");
                 Scanner sc2 = new Scanner(System.in);
                 String Servername = sc2.nextLine();
-
+                disableServer(Servername);
             }
             else{
                 System.out.println("Please insert again");

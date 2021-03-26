@@ -11,7 +11,7 @@ public class RegisterServiceImpl implements RegisterService{
     }
 
     @Override
-    public void unbind(String name, StorageService service) throws NotBoundException, MalformedURLException, RemoteException {
+    public void unbind(String name) throws NotBoundException, MalformedURLException, RemoteException {
         Naming.unbind("rmi://localhost:6789/"+name);
     }
 }
